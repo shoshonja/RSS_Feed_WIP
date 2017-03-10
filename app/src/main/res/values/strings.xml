@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">RSS_Feed_final</string>
+    <string name="RSS_title">RSS feed reader</string>
+    <string name="feed_fetcher">Fetch feeds</string>
+    <string name="feed_select">Select your feed site</string>
+</resources>
