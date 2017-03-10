@@ -19,6 +19,7 @@ public class RssFeedActivity extends AppCompatActivity {
     private RssFeedReader feedReader;
 
     //public TextView testTextView;
+    //TODO custom listView to show all RSS data
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
