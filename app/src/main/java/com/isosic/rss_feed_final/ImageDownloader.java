@@ -3,7 +3,6 @@ package com.isosic.rss_feed_final;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 
 import java.io.IOException;

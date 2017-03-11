@@ -12,9 +12,8 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView infoTextView;
     private Button btFetch;
-    private Button btSelect;
+    //rivate Button btSelect;
     private String feedSite = null;
     private RssFeedReader rssFeedReader;
 
@@ -29,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-        infoTextView = (TextView) findViewById(R.id.tvTitle);
+        //infoTextView = (TextView) findViewById(R.id.tvTitle);
         btFetch = (Button) findViewById(R.id.btFetch);
-        btSelect = (Button) findViewById(R.id.btSelect);
+        //btSelect = (Button) findViewById(R.id.btSelect);
         feedSite = "https://www.pinkbike.com/pinkbike_xml_feed.php";
     }
 
@@ -54,12 +53,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+/*
         btSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "This does nothing. Sod off!", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
     }
 }

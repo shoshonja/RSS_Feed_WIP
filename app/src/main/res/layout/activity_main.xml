@@ -25,11 +25,11 @@
         android:layout_gravity="center"
         android:text="@string/feed_fetcher" />
 
-    <Button
+    <!--<Button
         android:id="@+id/btSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/feed_select" />
+        android:text="@string/feed_select" /> -->
 
 </LinearLayout>
