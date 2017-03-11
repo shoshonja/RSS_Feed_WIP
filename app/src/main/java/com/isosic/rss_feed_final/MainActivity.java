@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.MalformedURLException;
@@ -13,7 +12,7 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
     private Button btFetch;
-    //rivate Button btSelect;
+    //private Button btSelect;
     private String feedSite = null;
     private RssFeedReader rssFeedReader;
 
@@ -28,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-        //infoTextView = (TextView) findViewById(R.id.tvTitle);
         btFetch = (Button) findViewById(R.id.btFetch);
         //btSelect = (Button) findViewById(R.id.btSelect);
         feedSite = "https://www.pinkbike.com/pinkbike_xml_feed.php";
