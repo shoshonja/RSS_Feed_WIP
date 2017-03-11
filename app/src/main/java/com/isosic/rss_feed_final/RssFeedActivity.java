@@ -5,21 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import android.widget.ListView;
+
 
 public class RssFeedActivity extends AppCompatActivity {
 
-    private URL webSiteURL;
     private ListView lvRSSFeeds;
-    private RssFeedReader feedReader;
-
-    //public TextView testTextView;
-    //TODO custom listView to show all RSS data
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,36 +20,26 @@ public class RssFeedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rss_feed);
 
         initialize();
-        SetupListeners();
-
-        feedReader.execute();
+        setup();
 
     }
-
 
     private void initialize() {
-
-        Intent intent = getIntent();
-        try {
-            webSiteURL = new URL(intent.getStringExtra("FEED_SITE"));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        //testTextView = (TextView) findViewById(R.id.idTestTextView);
         lvRSSFeeds = (ListView) findViewById(R.id.lvRSSFeeds);
-        feedReader = new RssFeedReader(RssFeedActivity.this, webSiteURL);
-
-
+        intent = new Intent(RssFeedActivity.this, WebViewActivity.class);
     }
 
 
-    private void SetupListeners() {
+    public void setup() {
+
+        CustomAdapter adapter = new CustomAdapter(RssFeedActivity.this, RssFeedReader.feedItemList);
+        lvRSSFeeds.setAdapter(adapter);
 
         lvRSSFeeds.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                intent.putExtra("URL", RssFeedReader.feedItemList.get((int)l).getLink());
+                startActivity(intent);
             }
         });
     }

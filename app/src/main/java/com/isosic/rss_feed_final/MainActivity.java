@@ -1,6 +1,5 @@
 package com.isosic.rss_feed_final;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,12 +7,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView infoTextView;
     private Button btFetch;
     private Button btSelect;
     private String feedSite = null;
+    private RssFeedReader rssFeedReader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         initialize();
         setupListeners();
+
     }
 
     private void initialize() {
@@ -37,9 +41,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (feedSite != null) {
-                    Intent intent = new Intent(MainActivity.this, RssFeedActivity.class);
-                    intent.putExtra("FEED_SITE", feedSite);
-                    startActivity(intent);
+                    try {
+                        URL feedSiteUrl = new URL(feedSite);
+                        rssFeedReader = new RssFeedReader(MainActivity.this,feedSiteUrl);
+                        rssFeedReader.execute();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+
                 } else
                     Toast.makeText(MainActivity.this, "Select your website first!", Toast.LENGTH_SHORT).show();
 

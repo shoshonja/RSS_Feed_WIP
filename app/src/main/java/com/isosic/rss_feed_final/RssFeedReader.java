@@ -2,7 +2,9 @@ package com.isosic.rss_feed_final;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 
 import org.apache.commons.lang3.StringUtils;
@@ -28,18 +30,21 @@ public class RssFeedReader extends AsyncTask<URL, Integer, Integer> {
     private Context context;
     private URL feedAdress;
     private ProgressDialog progressDialog;
-    public ArrayList<RssFeedItems> feedItemList;
+    private Intent intent;
+    public static ArrayList<RssFeedItems> feedItemList;
+
 
     public RssFeedReader(Context context, URL feedAdress) {
-        this.context = context;
+        this.context = context.getApplicationContext();
         this.feedAdress = feedAdress;
         progressDialog = new ProgressDialog(context);
+        feedItemList = new ArrayList<>();
+
+        intent = new Intent(context, RssFeedActivity.class);
 
     }
 
     public void generateFeedsFromXML(Document xmlDocument) {
-
-        feedItemList = new ArrayList<>();
 
         Element root = xmlDocument.getDocumentElement();
         Node channel = root.getChildNodes().item(1);
@@ -66,11 +71,11 @@ public class RssFeedReader extends AsyncTask<URL, Integer, Integer> {
                     }
                 }
                 feedItemList.add(RSSitem);
-                Log.d("itemTitle", RSSitem.getTitle());
+               /* Log.d("itemTitle", RSSitem.getTitle());
                 Log.d("itemLink", RSSitem.getLink());
                 Log.d("itemDescription", RSSitem.getDescription());
                 Log.d("itemPubDate", RSSitem.getPubDate());
-                Log.d("itemThumbnail", RSSitem.getThumbnail());
+                Log.d("itemThumbnail", RSSitem.getThumbnail());*/
             }
         }
     }
@@ -120,5 +125,7 @@ public class RssFeedReader extends AsyncTask<URL, Integer, Integer> {
     protected void onPostExecute(Integer integer) {
         super.onPostExecute(integer);
         progressDialog.dismiss();
+
+        context.startActivity(intent);
     }
 }
