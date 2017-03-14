@@ -126,6 +126,7 @@ public class RssFeedReader extends AsyncTask<URL, Integer, Integer> {
         super.onPostExecute(integer);
         progressDialog.dismiss();
 
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 }
