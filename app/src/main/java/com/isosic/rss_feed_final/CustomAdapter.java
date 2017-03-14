@@ -62,6 +62,7 @@ public class CustomAdapter extends ArrayAdapter<RssFeedItems> {
         description.setText(descriptions[position]);
         pubDate.setText(dates[position]);
 
+        //lambda style
         new ImageDownloader(thumbnail).execute(thumbnails[position]);
 
 

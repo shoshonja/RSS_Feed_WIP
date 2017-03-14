@@ -1,10 +1,12 @@
 package com.isosic.rss_feed_final;
 
+import java.io.Serializable;
+
 /**
  * Created by isosic on 10.3.2017..
  */
 
-public class RssFeedItems {
+public class RssFeedItems implements Serializable{
 
     private String title;
     private String link;

@@ -8,11 +8,14 @@ import android.widget.AdapterView;
 
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 
 public class RssFeedActivity extends AppCompatActivity {
 
     private ListView lvRSSFeeds;
-    private Intent intent;
+    private Intent intentSent;
+    private Intent intentRecieved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,20 +29,22 @@ public class RssFeedActivity extends AppCompatActivity {
 
     private void initialize() {
         lvRSSFeeds = (ListView) findViewById(R.id.lvRSSFeeds);
-        intent = new Intent(RssFeedActivity.this, WebViewActivity.class);
+        intentSent = new Intent(RssFeedActivity.this, WebViewActivity.class);
+        intentRecieved = getIntent();
     }
 
 
     public void setup() {
 
-        CustomAdapter adapter = new CustomAdapter(RssFeedActivity.this, RssFeedReader.feedItemList);
+        final ArrayList<RssFeedItems> feedArray = (ArrayList<RssFeedItems>) intentRecieved.getSerializableExtra("FEEDS");
+        CustomAdapter adapter = new CustomAdapter(RssFeedActivity.this, feedArray);
         lvRSSFeeds.setAdapter(adapter);
 
         lvRSSFeeds.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                intent.putExtra("URL", RssFeedReader.feedItemList.get((int)l).getLink());
-                startActivity(intent);
+                intentSent.putExtra("URL", feedArray.get((int)l).getLink());
+                startActivity(intentSent);
             }
         });
     }

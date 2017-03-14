@@ -31,7 +31,7 @@ public class RssFeedReader extends AsyncTask<URL, Integer, Integer> {
     private URL feedAdress;
     private ProgressDialog progressDialog;
     private Intent intent;
-    public static ArrayList<RssFeedItems> feedItemList;
+    private ArrayList<RssFeedItems> feedItemList;
 
 
     public RssFeedReader(Context context, URL feedAdress) {
@@ -127,6 +127,7 @@ public class RssFeedReader extends AsyncTask<URL, Integer, Integer> {
         progressDialog.dismiss();
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("FEEDS",feedItemList);
         context.startActivity(intent);
     }
 }
