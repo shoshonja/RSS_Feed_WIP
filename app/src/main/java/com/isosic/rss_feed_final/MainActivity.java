@@ -11,8 +11,12 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
+    //TODO
+    // needs custom dialog for selecting website. Maby dropdown menu for preselected ones?
+    // different reader classes for different standards.
+
     private Button btFetch;
-    //private Button btSelect;
+    private Button btSelect;
     private String feedSite = null;
     private RssFeedReader rssFeedReader;
 
@@ -28,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initialize() {
         btFetch = (Button) findViewById(R.id.btFetch);
-        //btSelect = (Button) findViewById(R.id.btSelect);
+        btSelect = (Button) findViewById(R.id.btSelect);
         feedSite = "https://www.pinkbike.com/pinkbike_xml_feed.php";
     }
 
@@ -51,12 +55,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-/*
+
         btSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "This does nothing. Sod off!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Hello friend! Nothing to see here. Just branching..", Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
     }
 }
